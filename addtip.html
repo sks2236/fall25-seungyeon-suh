@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mom Tips App - Add Your Tip</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Add Your Tip</h1>
+    <p>Share your favorite tip with other moms!</p>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <form class="add-tip-form">
+      <label for="tip-title">Tip Title:</label><br>
+      <input type="text" id="tip-title" name="tip-title" placeholder="Ex: Quick Cleaning Hack" required><br><br>
+
+      <label for="tip-category">Category:</label><br>
+      <select id="tip-category" name="tip-category" required>
+        <option>Cleaning</option>
+        <option>Meal Prep</option>
+        <option>Self Care</option>
+        <option>Behavior</option>
+        <option>Play Ideas</option>
+      </select><br><br>
+
+      <label for="tip-text">Your Tip:</label><br>
+      <textarea id="tip-text" name="tip-text" rows="5" placeholder="Write your tip here..." required></textarea><br><br>
+
+      <button type="submit">Submit Tip</button>
+    </form>
+
+    <!-- Example of a “social media” style feed -->
+    <section class="tip-feed">
+      <h2>Recent Tips</h2>
+      <article>
+        <h3>Meal Prep Sunday</h3>
+        <p>Cut fruits and veggies on Sunday to save time during the week.</p>
+        <small>Category: Meal Prep</small>
+      </article>
+
+      <article>
+        <h3>Quick Cleaning Hack</h3>
+        <p>Microwave lemon water for 3 minutes to loosen grime before wiping.</p>
+        <small>Category: Cleaning</small>
+      </article>
+    </section>
+  </main>
+
+  <!-- Footer with clickable icons -->
+  <footer>
+    <a href="index.html" title="Home">🏠</a>
+    <a href="addtip.html" title="Add">＋</a>
+    <a href="dailytips.html" title="Favorite">♡</a>
+    <a href="dailytips.html" title="Profile">👤</a>
+  </footer>
+</body>
+</html>
