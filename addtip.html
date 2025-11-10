@@ -4,35 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mom Tips App - Add Your Tip</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1>Add Your Tip</h1>
-    <p>Share your favorite tip with other moms!</p>
+  <!-- Header Navigation -->
+  <header class="top-nav">
+    <h1>Mom Tips App</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="addtip.html" class="active">Add Tip</a></li>
+        <li><a href="favorites.html">Favorites</a></li>
+        <li><a href="profile.html">Profile</a></li>
+      </ul>
+    </nav>
   </header>
 
   <!-- Main Content -->
   <main>
-    <form class="add-tip-form">
-      <label for="tip-title">Tip Title:</label><br>
-      <input type="text" id="tip-title" name="tip-title" placeholder="Ex: Quick Cleaning Hack" required><br><br>
+    <section class="add-tip-section">
+      <h2>Add Your Tip</h2>
+      <p>Share your favorite tip with other moms!</p>
 
-      <label for="tip-category">Category:</label><br>
-      <select id="tip-category" name="tip-category" required>
-        <option>Cleaning</option>
-        <option>Meal Prep</option>
-        <option>Self Care</option>
-        <option>Behavior</option>
-        <option>Play Ideas</option>
-      </select><br><br>
+      <form class="add-tip-form">
+        <label for="tip-title">Tip Title:</label><br>
+        <input type="text" id="tip-title" name="tip-title" placeholder="Ex: Quick Cleaning Hack" required><br><br>
 
-      <label for="tip-text">Your Tip:</label><br>
-      <textarea id="tip-text" name="tip-text" rows="5" placeholder="Write your tip here..." required></textarea><br><br>
+        <label for="tip-category">Category:</label><br>
+        <select id="tip-category" name="tip-category" required>
+          <option>Cleaning</option>
+          <option>Meal Prep</option>
+          <option>Self Care</option>
+          <option>Behavior</option>
+          <option>Play Ideas</option>
+        </select><br><br>
 
-      <button type="submit">Submit Tip</button>
-    </form>
+        <label for="tip-text">Your Tip:</label><br>
+        <textarea id="tip-text" name="tip-text" rows="5" placeholder="Write your tip here..." required></textarea><br><br>
+
+        <button type="submit">Submit Tip</button>
+      </form>
+    </section>
 
     <!-- Example of a “social media” style feed -->
     <section class="tip-feed">
@@ -51,12 +63,9 @@
     </section>
   </main>
 
-  <!-- Footer with clickable icons -->
+  <!-- Footer -->
   <footer>
-    <a href="index.html" title="Home">🏠</a>
-    <a href="addtip.html" title="Add">＋</a>
-    <a href="dailytips.html" title="Favorite">♡</a>
-    <a href="dailytips.html" title="Profile">👤</a>
+    <p>© 2025 Mom Tips App. All rights reserved.</p>
   </footer>
 </body>
 </html>

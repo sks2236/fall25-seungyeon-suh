@@ -2,67 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mom Tips App - Profile</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1>My Profile</h1>
+  <!-- Header Navigation -->
+  <header class="top-nav">
+    <h1>Mom Tips App</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="addtip.html">Add Tip</a></li>
+        <li><a href="dailytips.html">Daily Tips</a></li>
+        <li><a href="favorites.html">Favorites</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
+      </ul>
+    </nav>
   </header>
 
   <!-- Profile Section -->
-  <section>
-    <img src="profile-pic.jpg" alt="Profile Picture" width="100">
-    <h2>MomJane</h2>
-    <p>Sharing daily tips to make life easier for busy moms!</p>
-  </section>
+  <main>
+    <section class="profile-section">
+      <img src="profile-pic.jpg" alt="Profile Picture" class="profile-pic">
+      <h2>MomJane</h2>
+      <p>Sharing daily tips to make life easier for busy moms!</p>
+    </section>
 
-  <!-- User’s Tips -->
-  <section>
-    <h2>My Tips</h2>
+    <!-- User’s Tips -->
+    <section class="tips-list">
+      <h2>My Tips</h2>
 
-    <!-- Tip 1 -->
-    <article>
-      <header>
-        <strong>Quick Cleaning Hack</strong> <small>• 2 hours ago</small>
-      </header>
-      <p>Microwave lemon water for 3 minutes to loosen grime — wipe clean easily!</p>
-      <footer>
-        <small>Category: Cleaning</small>
-      </footer>
-    </article>
-    <hr>
+      <!-- Tip 1 -->
+      <article>
+        <header>
+          <strong>Quick Cleaning Hack</strong> <small>• 2 hours ago</small>
+        </header>
+        <p>Microwave lemon water for 3 minutes to loosen grime — wipe clean easily!</p>
+        <footer>
+          <small>Category: Cleaning</small>
+        </footer>
+      </article>
 
-    <!-- Tip 2 -->
-    <article>
-      <header>
-        <strong>Meal Prep Sunday</strong> <small>• 1 day ago</small>
-      </header>
-      <p>Chop fruits and veggies ahead of time to save weekday stress.</p>
-      <footer>
-        <small>Category: Meal Prep</small>
-      </footer>
-    </article>
-    <hr>
+      <!-- Tip 2 -->
+      <article>
+        <header>
+          <strong>Meal Prep Sunday</strong> <small>• 1 day ago</small>
+        </header>
+        <p>Chop fruits and veggies ahead of time to save weekday stress.</p>
+        <footer>
+          <small>Category: Meal Prep</small>
+        </footer>
+      </article>
 
-    <!-- Tip 3 -->
-    <article>
-      <header>
-        <strong>Morning Self-Care</strong> <small>• 3 days ago</small>
-      </header>
-      <p>Stretch and take 5 deep breaths before starting your day.</p>
-      <footer>
-        <small>Category: Self Care</small>
-      </footer>
-    </article>
-  </section>
+      <!-- Tip 3 -->
+      <article>
+        <header>
+          <strong>Morning Self-Care</strong> <small>• 3 days ago</small>
+        </header>
+        <p>Stretch and take 5 deep breaths before starting your day.</p>
+        <footer>
+          <small>Category: Self Care</small>
+        </footer>
+      </article>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
-    <a href="index.html" title="Home">🏠</a>
-    <a href="addtip.html" title="Add">＋</a>
-    <a href="favorites.html" title="Favorite">♡</a>
-    <a href="profile.html" title="Profile">👤</a>
+    <p>© 2025 Mom Tips App. All rights reserved.</p>
   </footer>
 </body>
 </html>

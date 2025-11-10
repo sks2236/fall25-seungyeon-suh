@@ -39,3 +39,16 @@ The Daily Tips link on the Home page also takes users to `dailytips.html`.
 
 - Making sure **assets (images, icons, etc.) load correctly** on all pages.
 - Ensuring that users feel **connected across pages**, since navigation involves full page reloads.
+
+November 10, 2025
+Key changes made:
+-Updated al HTML pages
+-Added script.js and dailytips.html to generate daily tips
+-Ensured HTML structure consistency
+
+Challenges:
+-Figuring out where to insert Javascript container
+-Making sure script runs properly
+
+Next week goals:
+-Add functionality to submit new tips from addtip.html
