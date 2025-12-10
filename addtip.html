@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mom Tips App - Add Your Tip</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mom Tips - Add Your Tip</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
   <!-- Header Navigation -->
   <header class="top-nav">
-    <h1>Mom Tips App</h1>
+    <h1>Mom Tips</h1>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="addtip.html" class="active">Add Tip</a></li>
+        <li><a href="dailytips.html">Daily Tips</a></li>
         <li><a href="favorites.html">Favorites</a></li>
         <li><a href="profile.html">Profile</a></li>
       </ul>
@@ -26,12 +28,12 @@
       <h2>Add Your Tip</h2>
       <p>Share your favorite tip with other moms!</p>
 
-      <form class="add-tip-form">
+      <form class="add-tip-form" id="tipForm">
         <label for="tip-title">Tip Title:</label><br>
-        <input type="text" id="tip-title" name="tip-title" placeholder="Ex: Quick Cleaning Hack" required><br><br>
+        <input type="text" id="tip-title" placeholder="Ex: Quick Cleaning Hack" required><br><br>
 
         <label for="tip-category">Category:</label><br>
-        <select id="tip-category" name="tip-category" required>
+        <select id="tip-category" required>
           <option>Cleaning</option>
           <option>Meal Prep</option>
           <option>Self Care</option>
@@ -40,32 +42,52 @@
         </select><br><br>
 
         <label for="tip-text">Your Tip:</label><br>
-        <textarea id="tip-text" name="tip-text" rows="5" placeholder="Write your tip here..." required></textarea><br><br>
+        <textarea id="tip-text" rows="5" placeholder="Write your tip here..." required></textarea><br><br>
 
         <button type="submit">Submit Tip</button>
       </form>
-    </section>
 
-    <!-- Example of a “social media” style feed -->
-    <section class="tip-feed">
-      <h2>Recent Tips</h2>
-      <article>
-        <h3>Meal Prep Sunday</h3>
-        <p>Cut fruits and veggies on Sunday to save time during the week.</p>
-        <small>Category: Meal Prep</small>
-      </article>
-
-      <article>
-        <h3>Quick Cleaning Hack</h3>
-        <p>Microwave lemon water for 3 minutes to loosen grime before wiping.</p>
-        <small>Category: Cleaning</small>
-      </article>
+      <p id="confirmation" style="display:none; color:green; font-weight:bold; margin-top:10px;">
+        Tip submitted successfully! 🎉
+      </p>
     </section>
   </main>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Mom Tips App. All rights reserved.</p>
+    <p>© 2025 Mom Tips. All rights reserved.</p>
   </footer>
+
+  <!-- Script to Save Tips in LocalStorage -->
+  <script>
+    const tipForm = document.getElementById("tipForm");
+    const confirmation = document.getElementById("confirmation");
+
+    tipForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById("tip-title").value.trim();
+      const category = document.getElementById("tip-category").value;
+      const text = document.getElementById("tip-text").value.trim();
+
+      if (!title || !text) return;
+
+      // Load existing tips or create new array
+      let tips = JSON.parse(localStorage.getItem("userTips") || "[]");
+
+      // Add new tip
+      tips.push({ title, category, description: text, author: "You", date: new Date().toISOString() });
+
+      // Save back to localStorage
+      localStorage.setItem("userTips", JSON.stringify(tips));
+
+      // Show confirmation
+      confirmation.style.display = "block";
+
+      // Clear form
+      tipForm.reset();
+    });
+  </script>
+
 </body>
 </html>
