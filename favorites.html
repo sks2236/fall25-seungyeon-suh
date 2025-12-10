@@ -23,31 +23,38 @@
 
 <main>
   <section class="tips-list">
-
-    <article>
-      <header><strong>MomJane</strong> <small>• 2 hours ago</small></header>
-      <p>Microwave lemon water for 3 minutes to loosen grime — wipe clean easily!</p>
-      <footer><small>Category: Cleaning</small> | <button>♡ Like</button></footer>
-    </article>
-
-    <article>
-      <header><strong>HealthyMom</strong> <small>• 1 day ago</small></header>
-      <p>Chop fruits and veggies ahead of time to save weekday stress.</p>
-      <footer><small>Category: Meal Prep</small> | <button>♡ Like</button></footer>
-    </article>
-
-    <article>
-      <header><strong>SelfCareMom</strong> <small>• 3 days ago</small></header>
-      <p>Stretch and take 5 deep breaths before starting your day.</p>
-      <footer><small>Category: Self Care</small> | <button>♡ Like</button></footer>
-    </article>
-
+    <h2>Favorite Tips</h2>
+    <div id="favoritesContainer"></div>
   </section>
 </main>
 
 <footer>
   <p>© 2025 Mom Tips. All rights reserved.</p>
 </footer>
+
+<script>
+  const container = document.getElementById("favoritesContainer");
+
+  // Load all tips and liked tips
+  const allTips = JSON.parse(localStorage.getItem("allTips") || "[]");
+  const likedTips = JSON.parse(localStorage.getItem("likedTips") || "[]");
+
+  const favorites = allTips.filter(tip => likedTips.includes(tip.title));
+
+  if (favorites.length === 0) {
+    container.innerHTML = "<p>You haven't liked any tips yet.</p>";
+  } else {
+    favorites.forEach(tip => {
+      const article = document.createElement("article");
+      article.innerHTML = `
+        <header><strong>${tip.title}</strong> • <small>${tip.author}</small></header>
+        <p>${tip.description}</p>
+        <footer><small>Category: ${tip.category}</small></footer>
+      `;
+      container.appendChild(article);
+    });
+  }
+</script>
 
 </body>
 </html>

@@ -8,101 +8,89 @@
 </head>
 <body>
 
-  <!-- Header Navigation -->
-  <header class="top-nav">
-    <h1>Mom Tips</h1>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="addtip.html">Add Tip</a></li>
-        <li><a href="dailytips.html" class="active">Daily Tips</a></li>
-        <li><a href="favorites.html">Favorites</a></li>
-        <li><a href="profile.html">Profile</a></li>
-      </ul>
-    </nav>
-  </header>
+<header class="top-nav">
+  <h1>Mom Tips</h1>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="addtip.html">Add Tip</a></li>
+      <li><a href="dailytips.html" class="active">Daily Tips</a></li>
+      <li><a href="favorites.html">Favorites</a></li>
+      <li><a href="profile.html">Profile</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <!-- Main Content -->
-  <main>
-    <section id="dynamic-content">
-      <h2>Daily Tips</h2>
-      <div id="content-container" class="tips-list">
-        <!-- Tips will be dynamically inserted here -->
-      </div>
-    </section>
-  </main>
+<main>
+  <section id="dynamic-content">
+    <h2>Daily Tips</h2>
+    <div id="content-container" class="tips-list"></div>
+  </section>
+</main>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Mom Tips. All rights reserved.</p>
-  </footer>
+<footer>
+  <p>© 2025 Mom Tips. All rights reserved.</p>
+</footer>
 
-  <!-- Script: Load Original + User Tips -->
-  <script>
-    // Original tips
-    const tips = [
-      {
-        title: "Cleaning Hack",
-        description: "Microwave lemon water for 3 minutes to loosen grime — wipe clean easily!",
-        category: "Cleaning",
-        author: "MomJane"
-      },
-      {
-        title: "Meal Prep Sunday",
-        description: "Chop fruits and veggies ahead of time to save weekday stress.",
-        category: "Meal Prep",
-        author: "HealthyMom"
-      },
-      {
-        title: "Morning Self-Care",
-        description: "Stretch and take 5 deep breaths before starting your day.",
-        category: "Self Care",
-        author: "SelfCareMom"
-      },
-      {
-        title: "Playtime Fun",
-        description: "Use recycled boxes to create a fun obstacle course for your kids.",
-        category: "Play Ideas",
-        author: "CreativeMom"
-      },
-      {
-        title: "Quick Breakfast",
-        description: "Overnight oats with fruit are easy, healthy, and quick for busy mornings.",
-        category: "Meal Prep",
-        author: "HealthyMom"
+<script>
+  // Original tips
+  const originalTips = [
+    { title: "Cleaning Hack", description: "Microwave lemon water for 3 minutes to loosen grime — wipe clean easily!", category: "Cleaning", author: "MomJane" },
+    { title: "Meal Prep Sunday", description: "Chop fruits and veggies ahead of time to save weekday stress.", category: "Meal Prep", author: "HealthyMom" },
+    { title: "Morning Self-Care", description: "Stretch and take 5 deep breaths before starting your day.", category: "Self Care", author: "SelfCareMom" },
+    { title: "Playtime Fun", description: "Use recycled boxes to create a fun obstacle course for your kids.", category: "Play Ideas", author: "CreativeMom" },
+    { title: "Quick Breakfast", description: "Overnight oats with fruit are easy, healthy, and quick for busy mornings.", category: "Meal Prep", author: "HealthyMom" }
+  ];
+
+  // Load user-submitted tips
+  const userTips = JSON.parse(localStorage.getItem("userTips") || "[]");
+
+  // Combine all tips
+  const allTips = [...originalTips, ...userTips];
+
+  // Save combined tips to localStorage for Favorites page
+  localStorage.setItem("allTips", JSON.stringify(allTips));
+
+  // Load liked tips
+  let likedTips = JSON.parse(localStorage.getItem("likedTips") || "[]");
+
+  const container = document.getElementById("content-container");
+
+  allTips.forEach((tip, index) => {
+    const article = document.createElement("article");
+
+    const liked = likedTips.includes(tip.title); // check if liked
+
+    article.innerHTML = `
+      <header><strong>${tip.title}</strong> • <small>${tip.author}</small></header>
+      <p>${tip.description}</p>
+      <footer>
+        <small>Category: ${tip.category}</small>
+        <button class="like-btn" data-title="${tip.title}">${liked ? "♥ Liked" : "♡ Like"}</button>
+      </footer>
+    `;
+
+    container.appendChild(article);
+  });
+
+  // Add event listeners to Like buttons
+  document.querySelectorAll(".like-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const title = btn.dataset.title;
+
+      if (likedTips.includes(title)) {
+        // Remove from likedTips
+        likedTips = likedTips.filter(t => t !== title);
+        btn.textContent = "♡ Like";
+      } else {
+        likedTips.push(title);
+        btn.textContent = "♥ Liked";
       }
-    ];
 
-    // Container for tips
-    const container = document.getElementById("content-container");
-
-    // Load user-submitted tips from localStorage
-    const userTips = JSON.parse(localStorage.getItem("userTips") || "[]");
-
-    // Combine original + user tips
-    const allTips = [...tips, ...userTips];
-
-    // Display each tip
-    allTips.forEach(tip => {
-      const tipDiv = document.createElement("article");
-      tipDiv.classList.add("tip-card");
-
-      const title = document.createElement("h3");
-      title.textContent = tip.title;
-
-      const description = document.createElement("p");
-      description.textContent = tip.description;
-
-      const meta = document.createElement("small");
-      meta.textContent = `Category: ${tip.category} | Author: ${tip.author || "Anonymous"}`;
-
-      tipDiv.appendChild(title);
-      tipDiv.appendChild(description);
-      tipDiv.appendChild(meta);
-
-      container.appendChild(tipDiv);
+      localStorage.setItem("likedTips", JSON.stringify(likedTips));
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>

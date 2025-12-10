@@ -23,43 +23,40 @@
 
 <main>
   <section class="profile-section">
-    <img src="profile-pic.jpg" alt="Profile Picture" class="profile-pic">
     <h2>MomJane</h2>
     <p>Sharing daily tips to make life easier for busy moms!</p>
   </section>
 
   <section class="tips-list">
     <h2>My Tips</h2>
-
-    <article>
-      <header>
-        <strong>Quick Cleaning Hack</strong> <small>• 2 hours ago</small>
-      </header>
-      <p>Microwave lemon water for 3 minutes to loosen grime — wipe clean easily!</p>
-      <footer><small>Category: Cleaning</small></footer>
-    </article>
-
-    <article>
-      <header>
-        <strong>Meal Prep Sunday</strong> <small>• 1 day ago</small>
-      </header>
-      <p>Chop fruits and veggies ahead of time to save weekday stress.</p>
-      <footer><small>Category: Meal Prep</small></footer>
-    </article>
-
-    <article>
-      <header>
-        <strong>Morning Self-Care</strong> <small>• 3 days ago</small>
-      </header>
-      <p>Stretch and take 5 deep breaths before starting your day.</p>
-      <footer><small>Category: Self Care</small></footer>
-    </article>
+    <div id="myTipsContainer"></div>
   </section>
 </main>
 
 <footer>
   <p>© 2025 Mom Tips. All rights reserved.</p>
 </footer>
+
+<script>
+  const currentUser = "MomJane";
+  const container = document.getElementById("myTipsContainer");
+
+  const userTips = JSON.parse(localStorage.getItem("userTips_" + currentUser) || "[]");
+
+  if (userTips.length === 0) {
+    container.innerHTML = "<p>You haven't submitted any tips yet.</p>";
+  } else {
+    userTips.forEach(tip => {
+      const article = document.createElement("article");
+      article.innerHTML = `
+        <header><strong>${tip.title}</strong></header>
+        <p>${tip.description}</p>
+        <footer><small>Category: ${tip.category}</small></footer>
+      `;
+      container.appendChild(article);
+    });
+  }
+</script>
 
 </body>
 </html>

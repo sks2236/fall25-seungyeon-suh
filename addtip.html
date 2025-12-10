@@ -8,86 +8,97 @@
 </head>
 <body>
 
-  <!-- Header Navigation -->
-  <header class="top-nav">
-    <h1>Mom Tips</h1>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="addtip.html" class="active">Add Tip</a></li>
-        <li><a href="dailytips.html">Daily Tips</a></li>
-        <li><a href="favorites.html">Favorites</a></li>
-        <li><a href="profile.html">Profile</a></li>
-      </ul>
-    </nav>
-  </header>
+<header class="top-nav">
+  <h1>Mom Tips</h1>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="addtip.html" class="active">Add Tip</a></li>
+      <li><a href="dailytips.html">Daily Tips</a></li>
+      <li><a href="favorites.html">Favorites</a></li>
+      <li><a href="profile.html">Profile</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <!-- Main Content -->
-  <main>
-    <section class="add-tip-section">
-      <h2>Add Your Tip</h2>
-      <p>Share your favorite tip with other moms!</p>
+<main>
+  <section class="add-tip-section">
+    <h2>Add Your Tip</h2>
+    <p>Share your favorite tip with other moms!</p>
 
-      <form class="add-tip-form" id="tipForm">
-        <label for="tip-title">Tip Title:</label><br>
-        <input type="text" id="tip-title" placeholder="Ex: Quick Cleaning Hack" required><br><br>
+    <form class="add-tip-form" id="tipForm">
+      <label for="tip-title">Tip Title:</label><br>
+      <input type="text" id="tip-title" placeholder="Ex: Quick Cleaning Hack" required><br><br>
 
-        <label for="tip-category">Category:</label><br>
-        <select id="tip-category" required>
-          <option>Cleaning</option>
-          <option>Meal Prep</option>
-          <option>Self Care</option>
-          <option>Behavior</option>
-          <option>Play Ideas</option>
-        </select><br><br>
+      <label for="tip-category">Category:</label><br>
+      <select id="tip-category" required>
+        <option>Cleaning</option>
+        <option>Meal Prep</option>
+        <option>Self Care</option>
+        <option>Behavior</option>
+        <option>Play Ideas</option>
+      </select><br><br>
 
-        <label for="tip-text">Your Tip:</label><br>
-        <textarea id="tip-text" rows="5" placeholder="Write your tip here..." required></textarea><br><br>
+      <label for="tip-text">Your Tip:</label><br>
+      <textarea id="tip-text" rows="5" placeholder="Write your tip here..." required></textarea><br><br>
 
-        <button type="submit">Submit Tip</button>
-      </form>
+      <button type="submit">Submit Tip</button>
+    </form>
 
-      <p id="confirmation" style="display:none; color:green; font-weight:bold; margin-top:10px;">
-        Tip submitted successfully! 🎉
-      </p>
-    </section>
-  </main>
+    <p id="confirmation" style="display:none; color:green; font-weight:bold; margin-top:10px;">
+      Tip submitted successfully! 🎉
+    </p>
+  </section>
+</main>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Mom Tips. All rights reserved.</p>
-  </footer>
+<footer>
+  <p>© 2025 Mom Tips. All rights reserved.</p>
+</footer>
 
-  <!-- Script to Save Tips in LocalStorage -->
-  <script>
-    const tipForm = document.getElementById("tipForm");
-    const confirmation = document.getElementById("confirmation");
+<script>
+  const tipForm = document.getElementById("tipForm");
+  const confirmation = document.getElementById("confirmation");
+  const currentUser = "MomJane";
 
-    tipForm.addEventListener("submit", function(e) {
-      e.preventDefault();
+  tipForm.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-      const title = document.getElementById("tip-title").value.trim();
-      const category = document.getElementById("tip-category").value;
-      const text = document.getElementById("tip-text").value.trim();
+    const title = document.getElementById("tip-title").value.trim();
+    const category = document.getElementById("tip-category").value;
+    const description = document.getElementById("tip-text").value.trim();
 
-      if (!title || !text) return;
+    if (!title || !description) return;
 
-      // Load existing tips or create new array
-      let tips = JSON.parse(localStorage.getItem("userTips") || "[]");
+    // Load existing allTips from localStorage or initialize
+    let allTips = JSON.parse(localStorage.getItem("allTips") || "[]");
 
-      // Add new tip
-      tips.push({ title, category, description: text, author: "You", date: new Date().toISOString() });
+    // Load existing user tips for MomJane
+    let userTips = JSON.parse(localStorage.getItem("userTips_" + currentUser) || "[]");
 
-      // Save back to localStorage
-      localStorage.setItem("userTips", JSON.stringify(tips));
+    // Create new tip object
+    const newTip = {
+      title,
+      description,
+      category,
+      author: currentUser,
+      date: new Date().toISOString()
+    };
 
-      // Show confirmation
-      confirmation.style.display = "block";
+    // Add to arrays
+    allTips.push(newTip);
+    userTips.push(newTip);
 
-      // Clear form
-      tipForm.reset();
-    });
-  </script>
+    // Save back to localStorage
+    localStorage.setItem("allTips", JSON.stringify(allTips));
+    localStorage.setItem("userTips_" + currentUser, JSON.stringify(userTips));
+
+    // Show confirmation and reset form
+    confirmation.style.display = "block";
+    tipForm.reset();
+  });
+</script>
 
 </body>
 </html>
+
+
